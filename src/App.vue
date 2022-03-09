@@ -3,6 +3,7 @@
     <img alt="Vue logo" src="./assets/logo.png">
     <router-view></router-view>
     <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <vid>测试，测试</div>
   </div>
 </template>
 
