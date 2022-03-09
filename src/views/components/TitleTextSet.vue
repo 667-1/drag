@@ -2,23 +2,46 @@
   <div class="titleText-set">
     <div class="item">
       <div class="title">标题内容</div>
-      <el-input v-model="value.title" placeholder="请输入标题内容" size="small"></el-input>
+      <el-input
+        v-model="value.title"
+        placeholder="请输入标题内容"
+        size="small"
+      ></el-input>
     </div>
     <div class="item">
       <div class="title">描述内容</div>
-      <el-input v-model="value.desc" type="textarea" resize="none" :rows="3" placeholder="请输入描述内容" size="small"></el-input>
+      <el-input
+        v-model="value.desc"
+        type="textarea"
+        resize="none"
+        :rows="3"
+        placeholder="请输入描述内容"
+        size="small"
+      ></el-input>
     </div>
     <div class="hr"></div>
-    <div class="d-item" v-for="(item,index) in list" :key="index">
+    <div class="d-item" v-for="(item, index) in list" :key="index">
       <div class="lt">
-        <div class="title">{{item.title}}</div>
-        <div class="txt">{{value[item.bindname]}}</div>
+        <div class="title">{{ item.title }}</div>
+        <div class="txt">{{ value[item.bindname] }}</div>
       </div>
       <div class="rt">
-        <el-radio-group v-model="value[item.bindname]" size="mini" v-if="item.type == 'radio'">
-          <el-radio-button v-for="(ite,ind) in item.radioList" :key="ind" :label="ite.label"></el-radio-button>
+        <el-radio-group
+          v-model="value[item.bindname]"
+          size="mini"
+          v-if="item.type == 'radio'"
+        >
+          <el-radio-button
+            v-for="(ite, ind) in item.radioList"
+            :key="ind"
+            :label="ite.label"
+          ></el-radio-button>
         </el-radio-group>
-        <el-color-picker v-model="value[item.bindname]" size="mini" v-if="item.type == 'color'"></el-color-picker>
+        <el-color-picker
+          v-model="value[item.bindname]"
+          size="mini"
+          v-if="item.type == 'color'"
+        ></el-color-picker>
       </div>
     </div>
   </div>
@@ -29,116 +52,116 @@ export default {
   props: {
     value: {
       type: Object,
-      default: () => {}
-    }
+      default: () => {},
+    },
   },
   data() {
     return {
       list: [
         {
-          title: '显示位置',
-          bindname: 'radio4',
-          type: 'radio',
+          title: "显示位置",
+          bindname: "radio4",
+          type: "radio",
           radioList: [
             {
-              label: '居左',
-              icon: ''
+              label: "居左",
+              icon: "",
             },
             {
-              label: '居中',
-              icon: ''
-            }
-          ]
+              label: "居中",
+              icon: "",
+            },
+          ],
         },
         {
-          title: '标题大小',
-          bindname: 'title-size',
-          type: 'radio',
+          title: "标题大小",
+          bindname: "title-size",
+          type: "radio",
           radioList: [
             {
-              label: '大',
-              icon: ''
+              label: "大",
+              icon: "",
             },
             {
-              label: '中',
-              icon: ''
+              label: "中",
+              icon: "",
             },
             {
-              label: '小',
-              icon: ''
-            }
-          ]
+              label: "小",
+              icon: "",
+            },
+          ],
         },
         {
-          title: '描述大小',
-          bindname: 'desc-size',
-          type: 'radio',
+          title: "描述大小",
+          bindname: "desc-size",
+          type: "radio",
           radioList: [
             {
-              label: '大',
-              icon: ''
+              label: "大",
+              icon: "",
             },
             {
-              label: '中',
-              icon: ''
+              label: "中",
+              icon: "",
             },
             {
-              label: '小',
-              icon: ''
-            }
-          ]
+              label: "小",
+              icon: "",
+            },
+          ],
         },
         {
-          title: '标题粗细',
-          bindname: 'desc-size1',
-          type: 'radio',
+          title: "标题粗细",
+          bindname: "desc-size1",
+          type: "radio",
           radioList: [
             {
-              label: '常规',
-              icon: ''
+              label: "常规",
+              icon: "",
             },
             {
-              label: '加粗',
-              icon: ''
-            }
-          ]
+              label: "加粗",
+              icon: "",
+            },
+          ],
         },
         {
-          title: '标题颜色',
-          bindname: 'desc-color',
-          type: 'color',
-          default: '#323233'
+          title: "标题颜色",
+          bindname: "desc-color",
+          type: "color",
+          default: "#323233",
         },
         {
-          title: '描述颜色',
-          bindname: 'desc-desc',
-          type: 'color',
-          default: '#969799'
+          title: "描述颜色",
+          bindname: "desc-desc",
+          type: "color",
+          default: "#969799",
         },
         {
-          title: '背景颜色',
-          bindname: 'desc-bg',
-          type: 'color',
-          default: '#ffffff'
+          title: "背景颜色",
+          bindname: "desc-bg",
+          type: "color",
+          default: "#ffffff",
         },
         {
-          title: '底部分割线',
-          bindname: 'radio5',
-          type: 'radio',
+          title: "底部分割线",
+          bindname: "radio5",
+          type: "radio",
           radioList: [
             {
-              label: '展示',
-              icon: ''
+              label: "展示",
+              icon: "",
             },
             {
-              label: '不展示',
-              icon: ''
-            }
-          ]
-        }
-      ]
+              label: "不展示",
+              icon: "",
+            },
+          ],
+        },
+      ],
     };
-  }
+  },
 };
 </script>
 

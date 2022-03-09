@@ -2,34 +2,65 @@
   <div class="tempset">
     <div class="left-content">
       <el-collapse value="base">
-        <el-collapse-item class="coll-item" :name="item.type" v-for="(item,index) in baseList" :key="`col${index}`">
+        <el-collapse-item
+          class="coll-item"
+          :name="item.type"
+          v-for="(item, index) in baseList"
+          :key="`col${index}`"
+        >
           <template slot="title">
             <div class="title">
               <i class="el-icon-setting"></i>
-              <i>{{item.name}}</i>
+              <i>{{ item.name }}</i>
             </div>
           </template>
           <div class="base-content">
-            <div :class="['item',{'disabled':ite.disabled}]" v-for="(ite,ind) in item.list" :key="`base${ind}`" :draggable="ite.disabled?false:true" @dragstart="dragPosition= [index, ind]" @dragend="dragPosition=[];">
+            <div
+              :class="['item', { disabled: ite.disabled }]"
+              v-for="(ite, ind) in item.list"
+              :key="`base${ind}`"
+              :draggable="ite.disabled ? false : true"
+              @dragstart="dragPosition = [index, ind]"
+              @dragend="dragPosition = []"
+            >
               <i class="icon" :style="`background-image:url(${ite.icon});`"></i>
-              <div class="name">{{ite.name}}</div>
-              <div class="num">{{ite.num}}/{{ite.maxnum}}</div>
+              <div class="name">{{ ite.name }}</div>
+              <div class="num">{{ ite.num }}/{{ ite.maxnum }}</div>
             </div>
           </div>
         </el-collapse-item>
       </el-collapse>
     </div>
     <div class="mid-content">
-      <div class="show-content" @dragover="dragOver" @dragenter="dragenter" @dragleave="dragleave" @drop="drop">
-        <div :class="['content', {'pe--none':showDropTip}]">
-          <div :class="['item-box',{'item-box--active':renderList.length>1&&renderList[0].type=='dropTip'?setIndex+1==index:setIndex==index}]" v-for="(item,index) in renderList" :key="index" @click="showSet(item,index)">
+      <div
+        class="show-content"
+        @dragover="dragOver"
+        @dragenter="dragenter"
+        @dragleave="dragleave"
+        @drop="drop"
+      >
+        <div :class="['content', { 'pe--none': showDropTip }]">
+          <div
+            :class="[
+              'item-box',
+              {
+                'item-box--active':
+                  renderList.length > 1 && renderList[0].type == 'dropTip'
+                    ? setIndex + 1 == index
+                    : setIndex == index,
+              },
+            ]"
+            v-for="(item, index) in renderList"
+            :key="index"
+            @click="showSet(item, index)"
+          >
             <component :is="item.type" :info="item.info"></component>
             <template v-if="item.name">
               <div class="item-tag">
                 <div class="arrow"></div>
-                <div class="txt">{{item.name}}</div>
+                <div class="txt">{{ item.name }}</div>
               </div>
-              <div class="item-del" @click.stop="delSingle(item,index)">
+              <div class="item-del" @click.stop="delSingle(item, index)">
                 <i class="icon el-icon-delete"></i>
               </div>
             </template>
@@ -39,37 +70,83 @@
     </div>
     <div class="right-content">
       <div class="oh-content">
-        <div class="title">{{rightTitle}}</div>
+        <div class="title">{{ rightTitle }}</div>
         <div class="right-set">
           <template v-if="showBaseSet">
             <div class="set-clearall">
-              <el-button class="clear-btn" type="text" size="small" v-show="setList.length>0" @click="delAll">清除组件</el-button>
+              <el-button
+                class="clear-btn"
+                type="text"
+                size="small"
+                v-show="setList.length > 0"
+                @click="delAll"
+                >清除组件</el-button
+              >
             </div>
-            <Draggable v-bind="setOptions" v-model="setList" @update="setDragUpdate">
-              <div class="right-base-set" v-for="(item,index) in setList" :key="`set${index}`">
+            <Draggable
+              v-bind="setOptions"
+              v-model="setList"
+              @update="setDragUpdate"
+            >
+              <div
+                class="right-base-set"
+                v-for="(item, index) in setList"
+                :key="`set${index}`"
+              >
                 <div class="item-left">
                   <i class="el-icon-share"></i>
-                  <i>{{item.name}}</i>
+                  <i>{{ item.name }}</i>
                 </div>
-                <i class="icon el-icon-delete" @click="delSingle(item,index);"></i>
+                <i
+                  class="icon el-icon-delete"
+                  @click="delSingle(item, index)"
+                ></i>
               </div>
             </Draggable>
           </template>
           <template v-else>
             <div class="right-render-set">
-              <div class="right-set-item" v-if="renderList.length && renderList[setIndex]">
-                <component :is="renderList[renderList[0].type == 'dropTip'&&renderList.length>1?setIndex+1:setIndex].type + 'Set'" v-model="renderList[renderList[0].type == 'dropTip'&&renderList.length>1?setIndex+1:setIndex].info"></component>
+              <div
+                class="right-set-item"
+                v-if="renderList.length && renderList[setIndex]"
+              >
+                <component
+                  :is="
+                    renderList[
+                      renderList[0].type == 'dropTip' && renderList.length > 1
+                        ? setIndex + 1
+                        : setIndex
+                    ].type + 'Set'
+                  "
+                  v-model="
+                    renderList[
+                      renderList[0].type == 'dropTip' && renderList.length > 1
+                        ? setIndex + 1
+                        : setIndex
+                    ].info
+                  "
+                ></component>
               </div>
             </div>
           </template>
         </div>
         <div class="right-none" v-if="setList.length == 0">
-          <img class="img" src="https://img.yzcdn.cn/public_files/2019/03/04/519dcf2c736ed6dc8412bf6836cb405d.png" />
+          <img
+            class="img"
+            src="https://img.yzcdn.cn/public_files/2019/03/04/519dcf2c736ed6dc8412bf6836cb405d.png"
+          />
           <div class="tip">暂无组件</div>
         </div>
       </div>
       <div class="right-tag">
-        <div :class="['item',{'right-tag--active':showBaseSet}]" @click="setIndex=-1;showBaseSet=true;rightTitle='组件管理';">
+        <div
+          :class="['item', { 'right-tag--active': showBaseSet }]"
+          @click="
+            setIndex = -1;
+            showBaseSet = true;
+            rightTitle = '组件管理';
+          "
+        >
           <span class="icon el-icon-menu"></span>
           <span class="txt">组件管理</span>
         </div>
@@ -80,7 +157,7 @@
 
 <script>
 const TIPDATA = {
-  type: "dropTip"
+  type: "dropTip",
 };
 import _ from "lodash";
 import Draggable from "vuedraggable";
@@ -89,7 +166,7 @@ import TEMPLATES from "./components/index";
 export default {
   components: {
     Draggable,
-    ...TEMPLATES
+    ...TEMPLATES,
   },
   data() {
     return {
@@ -105,65 +182,60 @@ export default {
           name: "基础组件",
           list: [
             {
-              icon:
-                "https://img.yzcdn.cn/public_files/2019/02/12/add4829af43def85a200029c3e485d77.png",
+              icon: "https://img.yzcdn.cn/public_files/2019/02/12/add4829af43def85a200029c3e485d77.png",
               name: "测试限制",
               type: "title",
               disabled: false,
               component: "TitleText",
               num: 0,
-              maxnum: 1
+              maxnum: 1,
             },
             {
-              icon:
-                "https://img.yzcdn.cn/public_files/2019/02/12/add4829af43def85a200029c3e485d77.png",
+              icon: "https://img.yzcdn.cn/public_files/2019/02/12/add4829af43def85a200029c3e485d77.png",
               name: "测试禁用",
               type: "title",
               disabled: true,
               component: "TitleText",
               num: 0,
-              maxnum: 20
+              maxnum: 20,
             },
             {
-              icon:
-                "https://img.yzcdn.cn/public_files/2019/02/12/add4829af43def85a200029c3e485d77.png",
+              icon: "https://img.yzcdn.cn/public_files/2019/02/12/add4829af43def85a200029c3e485d77.png",
               name: "标题文本",
               type: "title",
               disabled: false,
               component: "TitleText",
               num: 0,
-              maxnum: 20
+              maxnum: 20,
             },
             {
-              icon:
-                "https://img.yzcdn.cn/public_files/2019/02/12/a6806f6ff8c220aa7a57eb89d253e126.png",
+              icon: "https://img.yzcdn.cn/public_files/2019/02/12/a6806f6ff8c220aa7a57eb89d253e126.png",
               name: "商品",
               type: "goods",
               disabled: false,
               component: "TitleText",
               num: 0,
-              maxnum: 30
+              maxnum: 30,
             },
             {
-              icon:
-                "https://img.yzcdn.cn/public_files/2019/02/12/eae47c9a22c8d49ecbe88b4e6ca689e6.png",
+              icon: "https://img.yzcdn.cn/public_files/2019/02/12/eae47c9a22c8d49ecbe88b4e6ca689e6.png",
               name: "辅助分割",
               type: "split",
               disabled: false,
               component: "TitleText",
               num: 0,
-              maxnum: 30
-            }
-          ]
-        }
+              maxnum: 30,
+            },
+          ],
+        },
       ],
       renderList: [],
       setList: [],
       setOptions: {
         sort: true,
         forceFallback: true,
-        chosenClass: "setDragItem"
-      }
+        chosenClass: "setDragItem",
+      },
     };
   },
   methods: {
@@ -173,7 +245,7 @@ export default {
         name: this.baseList[x].list[y].name,
         x: x,
         y: y,
-        info: {}
+        info: {},
       };
     },
     dragOver(e) {
@@ -216,7 +288,7 @@ export default {
             dangerouslyUseHTMLString: true,
             closeOnClickModal: true,
             showClose: false,
-            type: "warning"
+            type: "warning",
           }
         );
         this.showDropTip = false;
@@ -261,16 +333,16 @@ export default {
       }
     },
     delAll() {
-      this.setList.forEach(item => {
+      this.setList.forEach((item) => {
         this.baseList[item.x].list[item.y].num = 0;
       });
       this.renderList = [];
       this.setList = [];
-    }
+    },
   },
   created() {
     this.setList = _.cloneDeep(this.renderList);
-  }
+  },
 };
 </script>
 

@@ -21,7 +21,7 @@
     background-color: #5487df;
   }
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
