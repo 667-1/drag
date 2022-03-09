@@ -1,12 +1,12 @@
 <template>
   <div class="title-text">
     <div class="top">
-      <h1 class="title">{{info.title || '请编辑标题内容'}}</h1>
+      <h1 class="title">{{ info.title || "请编辑标题内容" }}</h1>
       <div class="more">
         <span class="txt">查看更多</span>
       </div>
     </div>
-    <div class="sub">{{info.desc || '请编辑标题描述'}}</div>
+    <div class="sub">{{ info.desc || "请编辑标题描述" }}</div>
   </div>
 </template>
 
@@ -15,9 +15,9 @@ export default {
   props: {
     info: {
       type: Object,
-      default: () => {}
-    }
-  }
+      default: () => {},
+    },
+  },
 };
 </script>
 

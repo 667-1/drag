@@ -7,18 +7,39 @@
       <el-option label="7 x 7" :value="7"></el-option>
     </el-select>
     <div class="container" ref="container">
-      <div class="row" v-for="(item,row) in mode" :key="row">
-        <div :class="['item', highLight.some(item => item == `${row}${col}`) && begin?'item-selected':'']" v-for="(item1,col) in mode" :key="col" :style="itemStyle" @click="tapItem(row,col)" @mouseenter="enterItem(row,col)"></div>
+      <div class="row" v-for="(item, row) in mode" :key="row">
+        <div
+          :class="[
+            'item',
+            highLight.some((item) => item == `${row}${col}`) && begin
+              ? 'item-selected'
+              : '',
+          ]"
+          v-for="(item1, col) in mode"
+          :key="col"
+          :style="itemStyle"
+          @click="tapItem(row, col)"
+          @mouseenter="enterItem(row, col)"
+        ></div>
       </div>
-      <div :class="['cover', item.select?'cover-select':'']" :style="item.style" v-for="(item,index) in coverStyle" :key="'cover-'+ index" @click="coverTap(item,index)">
+      <div
+        :class="['cover', item.select ? 'cover-select' : '']"
+        :style="item.style"
+        v-for="(item, index) in coverStyle"
+        :key="'cover-' + index"
+        @click="coverTap(item, index)"
+      >
         <div class="innertxt">
           <div>
-            <span>{{item | coverSize(mode)}}</span>
+            <span>{{ item | coverSize(mode) }}</span>
             <span v-show="mode == 4">像素</span>
           </div>
           <div v-show="mode != 7">或同等比例</div>
         </div>
-        <i class="cover-close el-icon-close" @click="coverStyle.splice(index, 1);"></i>
+        <i
+          class="cover-close el-icon-close"
+          @click="coverStyle.splice(index, 1)"
+        ></i>
       </div>
     </div>
   </div>
@@ -31,11 +52,11 @@ export default {
       mode: 4,
       width: 81.5,
       begin: false,
-      itemStyle: '',
+      itemStyle: "",
       isSetOne: false,
       coverStyle: [],
       highLight: [],
-      tapArr: []
+      tapArr: [],
     };
   },
   watch: {
@@ -53,8 +74,8 @@ export default {
           `;
         });
       },
-      immediate: true
-    }
+      immediate: true,
+    },
   },
   methods: {
     tapItem(row, col) {
@@ -63,27 +84,33 @@ export default {
       this.tapArr.push(`${row}${col}`);
       this.highLight = [...new Set(this.highLight)];
       if (this.tapArr.length == 2) {
-        let startRow = this.tapArr[0].split('')[0];
-        let startCol = this.tapArr[0].split('')[1];
+        let startRow = this.tapArr[0].split("")[0];
+        let startCol = this.tapArr[0].split("")[1];
         let beginRow = this.isSetOne ? startRow : Math.min(startRow, row);
         let beginCol = this.isSetOne ? startCol : Math.min(startCol, col);
-        let endRow = Math.max(startRow, this.isSetOne ? startRow : this.tapArr[1].split('')[0]);
-        let endCol = Math.max(startCol, this.isSetOne ? startCol : this.tapArr[1].split('')[1]);
+        let endRow = Math.max(
+          startRow,
+          this.isSetOne ? startRow : this.tapArr[1].split("")[0]
+        );
+        let endCol = Math.max(
+          startCol,
+          this.isSetOne ? startCol : this.tapArr[1].split("")[1]
+        );
         this.clearCoverBorder();
         this.coverStyle.push({
           area: {
             beginRow,
             beginCol,
             endRow,
-            endCol
+            endCol,
           },
           style: {
-            left: beginCol * this.width + 'px',
-            top: beginRow * this.width + 'px',
-            right: (this.mode - 1 - endCol) * this.width - 1 + 'px',
-            bottom: (this.mode - 1 - endRow) * this.width - 1 + 'px'
+            left: beginCol * this.width + "px",
+            top: beginRow * this.width + "px",
+            right: (this.mode - 1 - endCol) * this.width - 1 + "px",
+            bottom: (this.mode - 1 - endRow) * this.width - 1 + "px",
           },
-          select: true
+          select: true,
         });
         this.begin = false;
         this.highLight = [];
@@ -91,15 +118,15 @@ export default {
       }
     },
     clearCoverBorder() {
-      this.coverStyle.forEach(item => {
+      this.coverStyle.forEach((item) => {
         item.select = false;
       });
     },
     enterItem(row, col) {
       if (this.begin) {
         let position = `${row}${col}`;
-        let startRow = this.tapArr[0].split('')[0];
-        let startCol = this.tapArr[0].split('')[1];
+        let startRow = this.tapArr[0].split("")[0];
+        let startCol = this.tapArr[0].split("")[1];
         let beginRow = Math.min(startRow, row);
         let beginCol = Math.min(startCol, col);
         let endRow = Math.max(startRow, row);
@@ -112,7 +139,7 @@ export default {
         }
         this.isSetOne = false;
         if (this.coverStyle.length > 0) {
-          this.coverStyle.forEach(item => {
+          this.coverStyle.forEach((item) => {
             let arr1 = [];
             let arr2 = [];
             for (let o = item.area.beginRow; o <= item.area.endRow; o++) {
@@ -125,8 +152,8 @@ export default {
                 arr2.push(`${i}${j}`);
               }
             }
-            arr1.forEach(item => {
-              arr2.forEach(ite => {
+            arr1.forEach((item) => {
+              arr2.forEach((ite) => {
                 if (item == ite) {
                   this.highLight = [this.highLight[0]];
                   this.isSetOne = true;
@@ -154,17 +181,17 @@ export default {
       console.log(index);
       this.clearCoverBorder();
       item.select = true;
-    }
+    },
   },
   filters: {
     coverSize(item, mode) {
       return (
         Math.round((750 / mode) * (item.area.endCol - item.area.beginCol + 1)) +
-        '×' +
+        "×" +
         Math.round((750 / mode) * (item.area.endRow - item.area.beginRow + 1))
       );
-    }
-  }
+    },
+  },
 };
 </script>
 
