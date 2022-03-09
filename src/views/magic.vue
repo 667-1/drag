@@ -1,10 +1,10 @@
 <template>
   <div class="box">
     <el-select v-model="mode" placeholder="请选择" class="select" size="small">
-      <el-option label="4 x 4" :value="4"></el-option>
-      <el-option label="5 x 5" :value="5"></el-option>
-      <el-option label="6 x 6" :value="6"></el-option>
-      <el-option label="7 x 7" :value="7"></el-option>
+      <el-option label="4 x 4" :value="4" />
+      <el-option label="5 x 5" :value="5" />
+      <el-option label="6 x 6" :value="6" />
+      <el-option label="7 x 7" :value="7" />
     </el-select>
     <div class="container" ref="container">
       <div class="row" v-for="(item, row) in mode" :key="row">

@@ -1,7 +1,7 @@
 <template>
   <div class="titleText-set">
     <div class="item">
-      <div class="title">标题内容</div>
+      <div class="title" @click="handle">标题内容</div>
       <el-input
         v-model="value.title"
         placeholder="请输入标题内容"
@@ -162,6 +162,11 @@ export default {
       ],
     };
   },
+  methods: {
+    handle() {
+      console.log(1);
+    }
+  }
 };
 </script>
 

@@ -16,7 +16,7 @@ export default {
     info: {
       type: Object,
       default: () => {},
-    },
+    }
   },
 };
 </script>
