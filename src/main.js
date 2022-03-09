@@ -7,6 +7,8 @@ Vue.use(ElementUI);
 
 import router from '@/router';
 
+console.log(router);
+
 Vue.config.productionTip = false
 
 new Vue({
