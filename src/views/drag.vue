@@ -351,7 +351,8 @@ export default {
   pointer-events: none;
 }
 .tempset {
-  width: 100vw;
+  position: relative;
+  // width: 100vw;
   height: 100vh;
 }
 .left-content {

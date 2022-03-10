@@ -197,13 +197,9 @@ export default {
 
 <style lang="scss" scoped>
 .box {
-  width: 100vw;
-  height: 100vh;
   padding-top: 50px;
 }
 .select {
-  left: 50%;
-  transform: translateX(-50%);
   margin-bottom: 20px;
 }
 .container {

@@ -1,7 +1,12 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <router-view></router-view>
+    <div class="links">
+      <router-link to="home">home</router-link> | 
+      <router-link to="magic">magic(魔方)</router-link> | 
+      <router-link to="drag">drag(拖拽生成页面)</router-link>
+    </div>
+    <router-view />
     <HelloWorld msg="Welcome to Your Vue.js App"/>
   </div>
 </template>
