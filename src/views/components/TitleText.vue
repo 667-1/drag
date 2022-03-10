@@ -15,7 +15,7 @@ export default {
   props: {
     info: {
       type: Object,
-      default: () => {},
+      default: () => {}
     }
   },
 };
@@ -27,19 +27,23 @@ export default {
   margin: 0 16px;
   cursor: pointer;
   border-bottom: 1px solid #eee;
+
   .top {
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
+
   .title {
     font-size: 16px;
     color: #323232;
   }
+
   .txt {
     color: #38f;
     font-size: 12px;
   }
+  
   .sub {
     font-size: 12px;
     color: #969696;

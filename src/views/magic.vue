@@ -199,9 +199,11 @@ export default {
 .box {
   padding-top: 50px;
 }
+
 .select {
   margin-bottom: 20px;
 }
+
 .container {
   position: relative;
   width: 326px;

@@ -249,17 +249,11 @@ export default {
       };
     },
     dragOver(e) {
-      if (
-        this.baseList[this.dragPosition[0]].list[this.dragPosition[1]].disabled
-      )
-        return;
+      if (this.baseList[this.dragPosition[0]].list[this.dragPosition[1]].disabled) return;
       e.preventDefault();
     },
     dragenter(e) {
-      if (
-        this.baseList[this.dragPosition[0]].list[this.dragPosition[1]].disabled
-      )
-        return;
+      if (this.baseList[this.dragPosition[0]].list[this.dragPosition[1]].disabled) return;
       this.target = e.target;
       this.showDropTip = true;
       this.renderList.unshift(TIPDATA);
@@ -350,24 +344,28 @@ export default {
 .pe--none {
   pointer-events: none;
 }
+
 .tempset {
   position: relative;
-  // width: 100vw;
   height: 100vh;
 }
+
 .left-content {
   width: 200px;
   height: 100%;
   background-color: #fff;
   user-select: none;
+
   .title {
     margin: 0 auto;
   }
+
   .base-content {
     display: flex;
     flex-wrap: wrap;
     padding: 0 10px;
     margin-top: -8px;
+
     .item {
       flex-shrink: 0;
       width: 50%;
@@ -375,6 +373,7 @@ export default {
       text-align: center;
       padding: 5px 0;
       font-size: 12px;
+
       .icon {
         display: inline-block;
         width: 32px;
@@ -382,28 +381,35 @@ export default {
         background-position: 0 0;
         background-size: cover;
       }
+
       .name {
         color: #323233;
       }
+
       .num {
         color: #7d7e80;
       }
+
       &:hover {
         cursor: move;
         font-weight: 700;
         border-radius: 2px;
         background-color: #155bd4;
+
         .name {
           color: #fff;
         }
+
         .num {
           color: #fff;
         }
+
         .icon {
           background-position: 0 32px;
         }
       }
     }
+
     .disabled {
       opacity: 0.5;
       &:hover {
@@ -411,12 +417,15 @@ export default {
         font-weight: normal;
         border-radius: 0;
         background-color: unset;
+
         .name {
           color: #323233;
         }
+
         .num {
           color: #7d7e80;
         }
+
         .icon {
           background-position: 0 0;
         }
@@ -425,12 +434,15 @@ export default {
     .baseDragItem {
       font-weight: 700;
       background-color: #155bd4;
+
       .name {
         color: #fff;
       }
+
       .num {
         color: #fff;
       }
+
       .icon {
         background-position: 0 32px;
       }
@@ -445,11 +457,13 @@ export default {
   max-height: 100%;
   overflow-y: auto;
   user-select: none;
+
   &::-webkit-scrollbar {
     width: 0;
     display: none;
     opacity: 0;
   }
+
   .show-content {
     margin-top: 56px;
     margin-bottom: 56px;
@@ -458,20 +472,25 @@ export default {
     min-height: 603px;
     background-color: #fff;
     box-shadow: 0 0 14px 0 rgba(0, 0, 0, 0.1);
+
     .item-box {
       position: relative;
       cursor: pointer;
+
       &:hover {
         .item-del {
           display: block;
         }
+
         .item-tag {
           opacity: 0;
         }
+
         &:after {
           display: block;
         }
       }
+
       &:after {
         display: none;
         content: "";
@@ -484,6 +503,7 @@ export default {
         border: 1px dashed #155bd4;
       }
     }
+
     .item-box--active {
       &::before {
         content: "";
@@ -496,6 +516,7 @@ export default {
         border: 2px solid #155bd4;
       }
     }
+
     .item-tag {
       position: absolute;
       top: 0;
@@ -508,6 +529,7 @@ export default {
       cursor: pointer;
       background-color: #fff;
       box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+
       .arrow {
         position: relative;
         &::after {
@@ -524,6 +546,7 @@ export default {
         }
       }
     }
+
     .item-del {
       display: none;
       position: absolute;
@@ -538,10 +561,12 @@ export default {
     }
   }
 }
+
 .right-content {
   position: absolute;
   right: 0;
   top: 0;
+
   .oh-content {
     width: 376px;
     height: 100vh;
@@ -553,6 +578,7 @@ export default {
       display: none;
     }
   }
+
   .title {
     position: sticky;
     top: 0;
@@ -564,6 +590,7 @@ export default {
     padding: 24px 16px;
     border-bottom: 1px solid #f2f4f6;
   }
+
   .right-set {
     position: relative;
     padding: 12px 16px;
@@ -575,6 +602,7 @@ export default {
       }
     }
   }
+
   .right-base-set {
     display: flex;
     align-items: center;
@@ -593,14 +621,17 @@ export default {
       padding: 5px;
     }
   }
+
   .setDragItem {
     color: #fff;
     background-color: #155bd4;
   }
+
   .right-tag {
     position: absolute;
     top: 67px;
     left: -104px;
+
     .item {
       width: 94px;
       height: 32px;
@@ -612,28 +643,35 @@ export default {
       box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.1);
       background-color: #fff;
       border-radius: 2px;
+
       .icon {
         margin-right: 3px;
       }
     }
+
     .right-tag--active {
       color: #fff;
       background-color: #155bd4;
     }
   }
+
   .right-none {
     text-align: center;
     margin-top: 150px;
     user-select: none;
     pointer-events: none;
+
     .img {
       width: 150px;
       height: 150px;
     }
+
     .tip {
       font-size: 12px;
     }
+
   }
+  
   .right-render-set {
     padding: 16px 0;
   }

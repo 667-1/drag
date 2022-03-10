@@ -9,6 +9,7 @@
   position: relative;
   height: 50px;
   background-color: #94b4eb;
+
   .txt {
     position: absolute;
     top: 50%;
@@ -20,6 +21,7 @@
     color: #fff;
     background-color: #5487df;
   }
+  
   &::after {
     content: "";
     position: absolute;
