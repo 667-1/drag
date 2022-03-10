@@ -52,8 +52,8 @@ export default {
   props: {
     value: {
       type: Object,
-      default: () => {},
-    },
+      default: () => {}
+    }
   },
   data() {
     return {
@@ -176,28 +176,35 @@ export default {
   margin: 20px 0;
   background-color: #ebedf0;
 }
+
 .titleText-set {
   margin-top: -20px;
+
   .item {
     margin-top: 20px;
+
     .title {
       font-size: 14px;
       margin-bottom: 10px;
     }
   }
+
   .d-item {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 20px;
+
     .lt {
       display: flex;
       align-items: center;
+
       .title {
         margin-right: 16px;
         font-size: 14px;
         color: #969799;
       }
+      
       .txt {
         font-size: 14px;
         font-weight: 500;
